@@ -1,11 +1,9 @@
 const todoArray = [];
-const createTodo = function (title, description, priority, dueDate) {
+const createTodo = function (title, priority, dueDate) {
    this.title = title;
-   this.description = description;
    this.priority = priority;
    this.dueDate = dueDate;
-   let checklist = {};
-   todoArray.push({title, description, priority, dueDate, checklist});
+   todoArray.push({title, priority, dueDate});
 }
 
 export {createTodo, todoArray}

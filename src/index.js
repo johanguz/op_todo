@@ -1,13 +1,15 @@
 import {createTodo,todoArray} from './todo';
 import _ from 'lodash';
-import {createHeader, createMain, createNav, createModal} from './starter';
+import {createHeader, createMain, createNav, createModal, createNewModalForm} from './starter';
 import bootstrap from 'bootstrap';
 
 
 //draw basic layout
 createHeader();
-createNav();
+// createNav();
 createMain();
-createModal('New To-Do List', 'todos', 'todoList');
-createModal('New Notebook', 'notebooks', 'notebookList');
+createModal('New Task', 'todos', 'todoList');
+createModal('New Project', 'projects', 'projectList');
+
+createNewModalForm('todos');
 

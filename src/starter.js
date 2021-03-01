@@ -11,22 +11,23 @@ const createHeader = function (){
     </div>`;
 }
 
-const createNav = function (){
-  const nav = document.createElement('div');
-  mainContent.appendChild(nav);
-    nav.innerHTML = `
-    <ul class="nav justify-content-center">
-      <li class="nav-item">
-        <a class="nav-link active home" aria-current="Home" href="#">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link menu" href="#">Menu</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link contact" href="#">Contact</a>
-      </li>
-    </ul>`
-}
+
+// const createNav = function (){
+//   const nav = document.createElement('div');
+//   mainContent.appendChild(nav);
+//     nav.innerHTML = `
+//     <ul class="nav justify-content-center">
+//       <li class="nav-item">
+//         <a class="nav-link active home" aria-current="Home" href="#">Home</a>
+//       </li>
+//       <li class="nav-item">
+//         <a class="nav-link menu" href="#">Menu</a>
+//       </li>
+//       <li class="nav-item">
+//         <a class="nav-link contact" href="#">Contact</a>
+//       </li>
+//     </ul>`
+// }
 
 const createMain = function (){
   const main = document.createElement('div');
@@ -35,7 +36,7 @@ const createMain = function (){
     <div class="container-fluid">
       <div class="row col-12">
       <div class='left column col-3 border'>
-        <ul class="list-group notebooks">
+        <ul class="list-group projects">
         </ul></div>
         <div class='right column col-9 border'>
         <ul class="list-group todos">
@@ -66,8 +67,8 @@ const createModal = function (btnText, section, modalID) {
               <h5 class="modal-title" id="${modalID}Label">${btnText}</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-              ...
+            <div class="modal-body ${section}">
+              hello
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -77,7 +78,42 @@ const createModal = function (btnText, section, modalID) {
         </div>
       </div>`
   })();
+  (function createNewModalForm () {
+    if (section === 'todos') {
+      const modalBody = document.querySelector(`.modal-body.${section}`);
+      console.log(modalBody);
+      modalBody.innerHTML = `
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="${section}floatingInput" placeholder="Task Name">
+        <label for="floatingInput">Task name</label>
+      </div>
+      <div class="form-floating">
+        <input type="date" class="form-control input-due-date" id="${section}floatingInput" placeholder="date">
+        <label for="floatingInput">Due Date</label>
+      </div>
+      <div class="pt-1">
+      <select class="form-select" aria-label="priority select">
+        <option selected>What is the Priority of the Task</option>
+        <option value="1">High</option>
+        <option value="2">Medium</option>
+        <option value="3">Low</option>
+      </select></div>
+      `
+    }
+    else if (section === 'projects') {
+      const modalBody = document.querySelector(`.modal-body.${section}`);
+      console.log(modalBody);
+      modalBody.innerHTML = `
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="${section}floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Project Title</label>
+      </div>
+      `
+    }
+  })();
 }
+
+
 
 // const navBarItemSelectors = function () {
 //   const homeButton = document.querySelector('.home');
@@ -89,29 +125,5 @@ const createModal = function (btnText, section, modalID) {
 
 // }
 
-// const drawTabs = {
-//   drawHome() {
-//       mainContent.innerHTML = '';
-//       createHeader();
-//       createNav();
-//       navBarItemSelectors();
-//       mainImage();
-//       mainText()  
-//     },
-//   drawMenu() {
-//       mainContent.innerHTML = '';
-//       createHeader();
-//       createNav();
-//       navBarItemSelectors();
-//       createMenu();
-//   },
-//   drawContact() {
-//     mainContent.innerHTML = '';
-//     createHeader();
-//     createNav();
-//     navBarItemSelectors();
-//     createContact();
-//   }
-// }
 
-export {createHeader, mainContent, createNav, createMain, createModal}
+export {createHeader, mainContent, createMain, createModal}
