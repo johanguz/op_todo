@@ -1,7 +1,8 @@
 import {createTodo, world} from './todo'
+import {createProjectListing, createTaskListing} from './dom'
 
 const mainContent = document.querySelector(".content");
-let currentProject = "";
+let currentProject = "default";
 
 const createHeader = function (){
   const header = document.createElement('div');
@@ -44,6 +45,13 @@ const createMain = function (){
         <div class='right column col-9 border'>
         <ul class="list-group todos">
         </ul></div>
+        <div class="row col-12">
+      <div class='left column col-3 border'>
+        <ul class="list-group projectsResults">
+        </ul></div>
+        <div class='right column col-9 border'>
+        <ul class="list-group todosResults">
+        </ul></div>
     </div>`;
 }
 
@@ -56,7 +64,7 @@ const createModal = function (btnText, section, modalID) {
       sectionToAppend.appendChild(button)
         button.innerHTML = `
           <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${modalID}">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${modalID}" id="${modalID}button">
           ${btnText}
         </button>`
   })();
@@ -92,7 +100,10 @@ const createModal = function (btnText, section, modalID) {
         let formDate = document.getElementById(`${section}date`);
         let formPriority = document.getElementById(`${section}priority`);
         const task = new createTodo(formTaskTitle.value, formPriority.value, formDate.value, currentProject);
+        console.log(world)
+        createTaskListing();
       })
+
       modalBody.innerHTML = `
       <div class="form-floating mb-3">
         <input type="text" class="form-control" id="${section}taskTitle" placeholder="Task Name">
@@ -120,6 +131,7 @@ const createModal = function (btnText, section, modalID) {
         projectTitle = formProjectTitle.value;
         world[projectTitle] = [];
         currentProject = projectTitle;
+        createProjectListing(projectTitle);
       })
       modalBody.innerHTML = `
       <div class="form-floating mb-3">
@@ -154,4 +166,4 @@ const createModal = function (btnText, section, modalID) {
 
 // }
 
-export {createHeader, mainContent, createMain, createModal}
+export {createHeader, mainContent, createMain, createModal, currentProject}
