@@ -63,10 +63,10 @@ const createModal = function (btnText, section, modalID) {
       button.classList.add('list-group-item')
       sectionToAppend.appendChild(button)
         button.innerHTML = `
-          <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#${modalID}" id="${modalID}button">
+        <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#${modalID}" id="${modalID}button">
           ${btnText}
-        </button>`
+        </button></div>`
   })();
   (function CreateNewModal () {
     const modal = document.createElement('div');

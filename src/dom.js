@@ -1,12 +1,19 @@
 import {createHeader, createMain, createNav, createModal, currentProject} from './starter';
 import {world} from './todo';
 
-const createProjectListing = function (projectTitle) {
+const createProjectListing = function () {
   const projectColumn = document.querySelector('.list-group.projectsResults');
-  const newProject = document.createElement('li');
-  projectColumn.appendChild(newProject);
-  newProject.classList.add('list-group-item')
-  newProject.innerHTML = `${projectTitle}`
+  projectColumn.innerHTML = `
+  `;
+  const worldArr = Object.keys(world);
+  for (let i=0; i <= worldArr.length-1; i++) {
+    const newProject = document.createElement('li');
+    projectColumn.appendChild(newProject);
+    newProject.classList.add('list-group-item')
+    newProject.innerHTML = `<div class="d-grid gap-2 col-12 mx-auto">
+    <button class="btn btn-primary" type="button">${worldArr[i]}</button>
+    </div>`
+  }
 }
 
 const createTaskListing = function () {
