@@ -1,6 +1,6 @@
 import {createTodo,todoArray} from './todo';
 import _ from 'lodash';
-import {createHeader, createMain, createNav, createModal, createNewModalForm} from './starter';
+import {createHeader, createMain, createNav, createModal} from './starter';
 import bootstrap from 'bootstrap';
 
 
@@ -10,6 +10,3 @@ createHeader();
 createMain();
 createModal('New Task', 'todos', 'todoList');
 createModal('New Project', 'projects', 'projectList');
-
-createNewModalForm('todos');
-

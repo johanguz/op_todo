@@ -1,4 +1,7 @@
+import {createTodo, world} from './todo'
+
 const mainContent = document.querySelector(".content");
+let currentProject = "";
 
 const createHeader = function (){
   const header = document.createElement('div');
@@ -45,6 +48,7 @@ const createMain = function (){
 }
 
 const createModal = function (btnText, section, modalID) {
+  let projectTitle;
   (function createNewModalButton () {
       const sectionToAppend = document.querySelector(`.${section}`)
       const button = document.createElement('li');
@@ -72,7 +76,7 @@ const createModal = function (btnText, section, modalID) {
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-primary submit ${section}">Save changes</button>
             </div>
           </div>
         </div>
@@ -81,18 +85,25 @@ const createModal = function (btnText, section, modalID) {
   (function createNewModalForm () {
     if (section === 'todos') {
       const modalBody = document.querySelector(`.modal-body.${section}`);
-      console.log(modalBody);
+      const submitButton = document.querySelector(`.submit.${section}`)
+      submitButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        let formTaskTitle = document.getElementById(`${section}taskTitle`);
+        let formDate = document.getElementById(`${section}date`);
+        let formPriority = document.getElementById(`${section}priority`);
+        const task = new createTodo(formTaskTitle.value, formPriority.value, formDate.value, currentProject);
+      })
       modalBody.innerHTML = `
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="${section}floatingInput" placeholder="Task Name">
+        <input type="text" class="form-control" id="${section}taskTitle" placeholder="Task Name">
         <label for="floatingInput">Task name</label>
       </div>
       <div class="form-floating">
-        <input type="date" class="form-control input-due-date" id="${section}floatingInput" placeholder="date">
+        <input type="date" class="form-control input-due-date" id="${section}date" placeholder="date">
         <label for="floatingInput">Due Date</label>
       </div>
-      <div class="pt-1">
-      <select class="form-select" aria-label="priority select">
+      <div class="mt-2">
+      <select class="form-select mt-2" aria-label="priority select" id="${section}priority">
         <option selected>What is the Priority of the Task</option>
         <option value="1">High</option>
         <option value="2">Medium</option>
@@ -102,15 +113,33 @@ const createModal = function (btnText, section, modalID) {
     }
     else if (section === 'projects') {
       const modalBody = document.querySelector(`.modal-body.${section}`);
-      console.log(modalBody);
+      const submitButton = document.querySelector(`.submit.${section}`)
+      submitButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        let formProjectTitle = document.getElementById(`${section}project`);
+        projectTitle = formProjectTitle.value;
+        world[projectTitle] = [];
+        currentProject = projectTitle;
+      })
       modalBody.innerHTML = `
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="${section}floatingInput" placeholder="name@example.com">
+        <input type="text" class="form-control" id="${section}project" placeholder="name@example.com">
         <label for="floatingInput">Project Title</label>
       </div>
       `
     }
   })();
+  // const grabFormValues = function () {
+  //   e.preventDefault();
+  //   let formTaskTitle = document.getElementById(`${section}taskTitle`);
+  //   let formDate = document.getElementById(`${section}date`);
+  //   let formPriority = document.getElementById(`${section}date`);
+  //   const task = new createTodo(formTaskTitle.value, formPriority.value, formDate.value);
+  //   return task;
+  // }
+  // document
+  //     .querySelector(`.submit.todos`)
+  //     .addEventListener('click', grabFormValues);
 }
 
 
@@ -124,6 +153,5 @@ const createModal = function (btnText, section, modalID) {
 //   contactButton.addEventListener('click', drawTabs.drawContact)
 
 // }
-
 
 export {createHeader, mainContent, createMain, createModal}

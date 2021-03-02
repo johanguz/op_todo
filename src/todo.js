@@ -1,9 +1,13 @@
-const todoArray = [];
-const createTodo = function (title, priority, dueDate) {
+const world = {
+  "default": []
+};
+const createTodo = function (title, priority, dueDate, project = "default") {
    this.title = title;
    this.priority = priority;
    this.dueDate = dueDate;
-   todoArray.push({title, priority, dueDate});
+   this.project = project;
+   world[project].push({title, priority, dueDate});
 }
 
-export {createTodo, todoArray}
+
+export {createTodo, world}
