@@ -11,8 +11,13 @@ const createProjectListing = function () {
     projectColumn.appendChild(newProject);
     newProject.classList.add('list-group-item')
     newProject.innerHTML = `<div class="d-grid gap-2 col-12 mx-auto">
-    <button class="btn btn-primary" type="button">${worldArr[i]}</button>
+    <button class="btn btn-primary" type="button" id="${worldArr[i]}btn">${worldArr[i]}</button>
     </div>`
+    let buttonAction = document.querySelector(`#${worldArr[i]}btn`);
+    buttonAction.addEventListener("click", () => {
+      currentProject = worldArr[i];
+      createTaskListing();
+    })
   }
 }
 
