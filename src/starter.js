@@ -15,52 +15,30 @@ const createHeader = function (){
     </div>`;
 }
 
-
-// const createNav = function (){
-//   const nav = document.createElement('div');
-//   mainContent.appendChild(nav);
-//     nav.innerHTML = `
-//     <ul class="nav justify-content-center">
-//       <li class="nav-item">
-//         <a class="nav-link active home" aria-current="Home" href="#">Home</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link menu" href="#">Menu</a>
-//       </li>
-//       <li class="nav-item">
-//         <a class="nav-link contact" href="#">Contact</a>
-//       </li>
-//     </ul>`
-// }
-
 const createMain = function (){
   const main = document.createElement('div');
   mainContent.appendChild(main)
     main.innerHTML = `
     <div class="container-fluid">
       <div class="row col-12">
-      <div class='left column col-3 border'>
-        <ul class="list-group projects">
-        </ul></div>
-        <div class='right column col-9 border'>
-        <ul class="list-group todos">
-        </ul></div>
+      <div class='left column col-3 projects'>
+       </div>
+        <div class='right column col-9 todos pb-4'>
+        </div>
         <div class="row col-12">
-      <div class='left column col-3 border'>
-        <ul class="list-group projectsResults">
-        </ul></div>
-        <div class='right column col-9 border'>
-        <ul class="list-group todosResults">
-        </ul></div>
-    </div>`;
+      <div class='left column col-3 projectsResults'>
+        </div>
+        <div class='right column col-9 todosResults'>
+        </div>
+    `;
 }
 
 const createModal = function (btnText, section, modalID) {
   let projectTitle;
   (function createNewModalButton () {
       const sectionToAppend = document.querySelector(`.${section}`)
-      const button = document.createElement('li');
-      button.classList.add('list-group-item')
+      const button = document.createElement('div');
+      // button.classList.add('list-group-item')
       sectionToAppend.appendChild(button)
         button.innerHTML = `
         <div class="d-grid gap-2 col-12 mx-auto">
