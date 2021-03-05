@@ -1,4 +1,4 @@
-import {createTodo, world} from './todo'
+import {createTodo, world, saveToLocalStorage} from './todo'
 import {createProjectListing, createTaskListing} from './dom'
 
 const mainContent = document.querySelector(".content");
@@ -78,7 +78,6 @@ const createModal = function (btnText, section, modalID) {
         let formDate = document.getElementById(`${section}date`);
         let formPriority = document.getElementById(`${section}priority`);
         const task = new createTodo(formTaskTitle.value, formPriority.value, formDate.value, currentProject);
-        console.log(world)
         createTaskListing();
       })
 

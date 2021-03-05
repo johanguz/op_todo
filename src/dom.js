@@ -48,7 +48,11 @@ const createTaskListing = function () {
         <div class="text-end col"> ${item.dueDate}</div>
     </div>
     </div>`;
-    
+       if (item.complete === true) {
+          document.querySelector(`.row.${item.project}${index}`)
+                  .classList.add('strike')
+       }
+       
     document.querySelector(`#${item.project}${index}`)
             .addEventListener('change', () => {
               if (item.complete === true){

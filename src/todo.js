@@ -11,5 +11,8 @@ const createTodo = function (title, priority, dueDate, project = "default", comp
    world[project].push({title, priority, dueDate, project, complete});
 }
 
+const saveToLocalStorage = function (elem) {
+  localStorage.setItem(elem);
+}
 
-export {createTodo, world}
+export {createTodo, world, saveToLocalStorage}
